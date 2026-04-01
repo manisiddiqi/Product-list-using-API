@@ -4,48 +4,117 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
+/* Loader Styles */
+.loader-container {
+    display: none; /* JS se control hoga */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Main Layout */
 .main{
-    width: 1320px;
+    max-width: 1320px; /* Width fix se hata kar max-width kar di */
+    width: 95%; 
     margin: auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Mobile ke liye zaroori hai */
 }
+
 h1{
     text-align: center;
     padding: 40px 0px;
 }
+
 .filterBox{
     flex-basis: 23%;
+    min-width: 200px;
 }
+
 .product{
     flex-basis: 75%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+/* Agar mobile screen ho toh products poori width le lain */
+@media (max-width: 768px) {
+    .filterBox, .product {
+        flex-basis: 100%;
+    }
+    .productItems {
+        flex-basis: 48%; /* Mobile par 2 items aik line mein */
+    }
+}
+
 .categoryList{
     margin-top: 20px;
 }
+
 .categoryList label{
     display: block;
     padding: 5px 0px;
+    cursor: pointer;
+    text-transform: capitalize;
 }
+
 .productItems{
     flex-basis: 31%;
     box-shadow: 0px 0px 10px 2px #ccc;
     margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
 }
+
+.productItems:hover {
+    transform: translateY(-5px);
+}
+
 .productItems img{
     width: 100%;
     height: 250px;
+    object-fit: contain; /* Image kharab nahi hogi */
+    padding: 10px;
 }
+
 .productItems p{
     padding: 10px;
+    color: #555;
 }
+
 .productItems h3{
     padding: 10px;
+    font-size: 16px;
 }
+
 .productItems h4{
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    background: #f9f9f9;
 }
